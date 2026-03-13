@@ -94,7 +94,7 @@ const portfolioData = {
   },
 };
 
-function validatePortfolioData(data) {
+function validatePortfolioData(data): boolean {
   if (!data || typeof data !== "object") return false;
   if (!data.name || !data.summary) return false;
   if (!Array.isArray(data.projects) || !Array.isArray(data.experience)) return false;
