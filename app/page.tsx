@@ -88,13 +88,13 @@ const portfolioData = {
   ],
   contact: {
     email: "joanna.yc.zhu@gmail.com",
-    location: "Cambridge, UK",
+    location: "UK",
     intro:
       "I am interested in graduate and early-career opportunities across engineering, consulting, technical support, and data-focused roles.",
   },
 };
 
-function validatePortfolioData(data): boolean {
+function validatePortfolioData(data: any): boolean {
   if (!data || typeof data !== "object") return false;
   if (!data.name || !data.summary) return false;
   if (!Array.isArray(data.projects) || !Array.isArray(data.experience)) return false;
@@ -278,24 +278,15 @@ export default function PortfolioWebsite() {
               ))}
             </div>
 
-            {/* Component checks (hidden for production)
-            <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-5">
-              <p className="text-sm text-slate-300">Component checks</p>
-              <ul className="mt-3 space-y-2 text-sm text-slate-100">
-                <li>Data object loaded: {validatePortfolioData(data) ? "pass" : "fail"}</li>
-                <li>Projects available: {data.projects.length}</li>
-                <li>Experience entries available: {data.experience.length}</li>
-                <li>Skills available: {data.skills.length}</li>
-              </ul>
-            </div>
-            */}
+            {
+}
           </div>
         </div>
       </section>
 
       <section id="contact" className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
         <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
-          <SectionTitle eyebrow="Contact" title="Let us connect" />
+          <SectionTitle eyebrow="Contact" title="Let's connect" />
           <p className="mt-4 max-w-2xl leading-8 text-slate-600">
             {data.contact.intro}
           </p>
