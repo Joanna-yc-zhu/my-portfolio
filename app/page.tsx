@@ -1,4 +1,49 @@
-const portfolioData = {
+type PortfolioData = {
+  name: string;
+  headline: string;
+  summary: string;
+  focusAreas: string[];
+  education: { school: string; degree: string }[];
+  languages: string[];
+  projects: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tags: string[];
+  }[];
+  experience: {
+    role: string;
+    org: string;
+    period: string;
+    bullets: string[];
+  }[];
+  skills: string[];
+  contact: {
+    email: string;
+    location: string;
+    intro: string;
+  };
+};
+
+type SectionTitleProps = {
+  eyebrow: string;
+  title: string;
+};
+
+import type { ReactNode } from "react";
+
+type PillProps = {
+  children: ReactNode;
+  dark?: boolean;
+};
+
+type InfoCardProps = {
+  label: string;
+  value: string;
+  muted?: boolean;
+};
+
+const portfolioData: PortfolioData = {
   name: "Yichen Zhu",
   headline: "Electrical & Electronic Engineering · Data & Optimisation",
   summary:
@@ -88,13 +133,13 @@ const portfolioData = {
   ],
   contact: {
     email: "joanna.yc.zhu@gmail.com",
-    location: "UK",
+    location: "Cambridge, UK",
     intro:
       "I am interested in graduate and early-career opportunities across engineering, consulting, technical support, and data-focused roles.",
   },
 };
 
-function validatePortfolioData(data: any): boolean {
+function validatePortfolioData(data: PortfolioData | null | undefined): boolean {
   if (!data || typeof data !== "object") return false;
   if (!data.name || !data.summary) return false;
   if (!Array.isArray(data.projects) || !Array.isArray(data.experience)) return false;
@@ -102,7 +147,7 @@ function validatePortfolioData(data: any): boolean {
   return true;
 }
 
-function SectionTitle({ eyebrow, title }) {
+function SectionTitle({ eyebrow, title }: SectionTitleProps) {
   return (
     <div>
       <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
@@ -113,7 +158,7 @@ function SectionTitle({ eyebrow, title }) {
   );
 }
 
-function Pill({ children, dark }) {
+function Pill({ children, dark = false }: PillProps) {
   return (
     <span
       className={
@@ -127,7 +172,7 @@ function Pill({ children, dark }) {
   );
 }
 
-function InfoCard({ label, value, muted }) {
+function InfoCard({ label, value, muted = false }: InfoCardProps) {
   return (
     <div className="rounded-2xl bg-slate-50 p-5">
       <p className="text-sm text-slate-500">{label}</p>
@@ -139,7 +184,7 @@ function InfoCard({ label, value, muted }) {
 }
 
 export default function PortfolioWebsite() {
-  const data = portfolioData;
+  const data: PortfolioData = portfolioData;
 
   if (!validatePortfolioData(data)) {
     return (
@@ -277,9 +322,6 @@ export default function PortfolioWebsite() {
                 </Pill>
               ))}
             </div>
-
-            {
-}
           </div>
         </div>
       </section>
